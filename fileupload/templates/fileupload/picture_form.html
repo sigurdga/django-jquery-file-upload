@@ -1,0 +1,54 @@
+{% load upload_tags %}
+<!DOCTYPE HTML>
+<!--
+/*
+ * jQuery File Upload Plugin HTML Example 5.0.5
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://creativecommons.org/licenses/MIT/
+ */
+-->
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<title>jQuery File Upload Example</title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="{{ STATIC_URL }}jquery.fileupload-ui.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}style.css">
+</head>
+<body>
+<div id="fileupload">
+    <form method="post" action="" enctype="multipart/form-data">
+        <div class="fileupload-buttonbar">
+            <label class="fileinput-button">
+                {% comment %}
+                <span>Add files...</span>
+                <input type="file" name="file[]" multiple>
+                {% endcomment %}
+        {% csrf_token %}
+        {{ form }}
+            </label>
+            <button type="submit" class="start">Start upload</button>
+            <button type="reset" class="cancel">Cancel upload</button>
+            <button type="button" class="delete">Delete files</button>
+        </div>
+    </form>
+    <div class="fileupload-content">
+        <table class="files"></table>
+        <div class="fileupload-progressbar"></div>
+    </div>
+</div>
+{% upload_js %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script src="{{ STATIC_URL }}jquery.iframe-transport.js"></script>
+<script src="{{ STATIC_URL }}jquery.fileupload.js"></script>
+<script src="{{ STATIC_URL }}jquery.fileupload-ui.js"></script>
+<script src="{{ STATIC_URL }}application.js"></script>
+</body>
+</html>
