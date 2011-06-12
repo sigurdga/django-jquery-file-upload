@@ -7,9 +7,24 @@ This is a small example on how to setup Sebastian Tschan's jQuery File Upload in
 
 Here, you'll find a minimal Django project with a minimal app. You can run the example standalone by cloning the repository, running the migrations and starting the server.
 
-Detailed instructions will probably be posted when the delete part (the only missing part) and image resize is finished.
-
 I want to give a thank to Sebastian Tschan, the original author, and Jørgen Bergquist for helping me over the first hurdles.
+
+Features
+========
+
+* Drag and drop files
+* Select multiple files
+* Cancel upload
+* Delete uploaded file (from database only)
+* No flash (or other browser plugins) needed
+* … more at the [upstream's features page](http://aquantum-demo.appspot.com/file-upload#features)
+
+Installation
+============
+
+* run ./manage.py syncdb --migrate
+* go to localhost:8000/upload/new/
+* upload some files
 
 License
 =======
