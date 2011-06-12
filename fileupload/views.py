@@ -25,7 +25,7 @@ class PictureDeleteView(DeleteView):
         return JSONResponse(True)
 
 class JSONResponse(HttpResponse):
-    """ JSON response class """
+    """JSON response class. This does not help browsers not liking application/json."""
     def __init__(self,obj='',json_opts={},mimetype="application/json",*args,**kwargs):
         content = simplejson.dumps(obj,**json_opts)
         super(JSONResponse,self).__init__(content,mimetype,*args,**kwargs)
