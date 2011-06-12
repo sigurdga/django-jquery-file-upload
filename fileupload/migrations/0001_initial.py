@@ -12,6 +12,7 @@ class Migration(SchemaMigration):
         db.create_table('fileupload_picture', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('file', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(db_index=True, max_length=50, blank=True)),
         ))
         db.send_create_signal('fileupload', ['Picture'])
 
@@ -26,7 +27,8 @@ class Migration(SchemaMigration):
         'fileupload.picture': {
             'Meta': {'object_name': 'Picture'},
             'file': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'db_index': 'True', 'max_length': '50', 'blank': 'True'})
         }
     }
 
