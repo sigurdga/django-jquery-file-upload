@@ -2,7 +2,9 @@ from django.db import models
 
 class Picture(models.Model):
 
-    file = models.ImageField(upload_to="pictures")
+    # This is a small demo using FileField instead of ImageField, not
+    # depending on PIL. You will probably want ImageField in your app.
+    file = models.FileField(upload_to="pictures")
     slug = models.SlugField(max_length=50, blank=True)
 
     def __unicode__(self):
