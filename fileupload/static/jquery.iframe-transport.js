@@ -1,5 +1,5 @@
 /*
- * jQuery Iframe Transport Plugin 1.1
+ * jQuery Iframe Transport Plugin 1.2.2
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2011, Sebastian Tschan
@@ -18,11 +18,13 @@
     // Helper variable to create unique names for the transport iframes:
     var counter = 0;
 
-    // The iframe transport accepts two additional options:
+    // The iframe transport accepts three additional options:
     // options.fileInput: a jQuery collection of file input fields
+    // options.paramName: the parameter name for the file form data,
+    //  overrides the name property of the file input field(s)
     // options.formData: an array of objects with name and value properties,
-    // equivalent to the return data of .serializeArray(), e.g.:
-    // [{name: a, value: 1}, {name: b, value: 2}]
+    //  equivalent to the return data of .serializeArray(), e.g.:
+    //  [{name: a, value: 1}, {name: b, value: 2}]
     $.ajaxTransport('iframe', function (options, originalOptions, jqXHR) {
         if (options.type === 'POST' || options.type === 'GET') {
             var form,
@@ -43,12 +45,26 @@
                         iframe
                             .unbind('load')
                             .bind('load', function () {
+                                var response;
+                                // Wrap in a try/catch block to catch exceptions thrown
+                                // when trying to access cross-domain iframe contents:
+                                try {
+                                    response = iframe.contents();
+                                    // Google Chrome and Firefox do not throw an
+                                    // exception when calling iframe.contents() on
+                                    // cross-domain requests, so we unify the response:
+                                    if (!response.length || !response[0].firstChild) {
+                                        throw new Error();
+                                    }
+                                } catch (e) {
+                                    response = undefined;
+                                }
                                 // The complete callback returns the
                                 // iframe content document as response object:
                                 completeCallback(
                                     200,
                                     'success',
-                                    {'iframe': iframe.contents()}
+                                    {'iframe': response}
                                 );
                                 // Fix for IE endless progress bar activity bug
                                 // (happens on form submits to iframe targets):
@@ -75,6 +91,11 @@
                             options.fileInput.after(function (index) {
                                 return fileInputClones[index];
                             });
+                            if (options.paramName) {
+                                options.fileInput.each(function () {
+                                    $(this).prop('name', options.paramName);
+                                });
+                            }
                             // Appending the file input fields to the hidden form
                             // removes them from their original location:
                             form
@@ -88,7 +109,9 @@
                         // by replacing the clones with the originals:
                         if (fileInputClones && fileInputClones.length) {
                             options.fileInput.each(function (index, input) {
-                                $(fileInputClones[index]).replaceWith(input);
+                                var clone = $(fileInputClones[index]);
+                                $(input).prop('name', clone.prop('name'));
+                                clone.replaceWith(input);
                             });
                         }
                     });
