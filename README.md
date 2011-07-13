@@ -22,7 +22,7 @@ Features
 Installation
 ============
 
-* run ./manage.py syncdb --migrate
+* run ./manage.py syncdb
 * go to localhost:8000/upload/new/
 * upload some files
 
