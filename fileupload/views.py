@@ -1,7 +1,7 @@
 from fileupload.models import Picture
 from django.views.generic import CreateView, DeleteView
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
 
@@ -35,9 +35,12 @@ class PictureDeleteView(DeleteView):
         """
         self.object = self.get_object()
         self.object.delete()
-        response = JSONResponse(True, {}, response_mimetype(self.request))
-        response['Content-Disposition'] = 'inline; filename=files.json'
-        return response
+        if request.is_ajax():
+            response = JSONResponse(True, {}, response_mimetype(self.request))
+            response['Content-Disposition'] = 'inline; filename=files.json'
+            return response
+        else:
+            return HttpResponseRedirect('/upload/new')
 
 class JSONResponse(HttpResponse):
     """JSON response class."""
