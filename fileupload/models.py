@@ -17,3 +17,7 @@ class Picture(models.Model):
     def save(self, *args, **kwargs):
         self.slug = self.file.name
         super(Picture, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.file.delete(False)
+        super(Picture, self).delete(*args, **kwargs)
