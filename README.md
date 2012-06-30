@@ -19,12 +19,23 @@ Features
 * No flash (or other browser plugins) needed
 * … more at the [upstream's features page](http://aquantum-demo.appspot.com/file-upload#features)
 
+Requirements
+============
+
+* Django
+* Python Imaging Library
+
+If you do not get PIL to work (_pillow_ is a replacement package that works
+with virtulalenvs), use FileField instead of ImageField in
+fileupload/models.py as commented in the file.
+
 Installation
 ============
 
-* run ./manage.py syncdb
-* go to localhost:8000/upload/new/
-* upload some files
+* pip install -r requirements.txt (will install django and pillow)
+* python manage.py syncdb
+* python manage.py runserver
+* go to localhost:8000/upload/new/ and upload some files
 
 License
 =======

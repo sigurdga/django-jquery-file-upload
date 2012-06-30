@@ -2,9 +2,13 @@ from django.db import models
 
 class Picture(models.Model):
 
-    # This is a small demo using FileField instead of ImageField, not
-    # depending on PIL. You will probably want ImageField in your app.
-    file = models.FileField(upload_to="pictures")
+    # This is a small demo using just two fields. The slug field is really not
+    # necessary, but makes the code simpler. ImageField depends on PIL or
+    # pillow (where Pillow is easily installable in a virtualenv. If you have
+    # problems installing pillow, use a more generic FileField instead.
+
+    #file = models.FileField(upload_to="pictures")
+    file = models.ImageField(upload_to="pictures")
     slug = models.SlugField(max_length=50, blank=True)
 
     def __unicode__(self):
