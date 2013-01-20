@@ -12,7 +12,7 @@ class Picture(models.Model):
     slug = models.SlugField(max_length=50, blank=True)
 
     def __unicode__(self):
-        return '%s' % (self.file)
+        return self.file.name
 
     @models.permalink
     def get_absolute_url(self):

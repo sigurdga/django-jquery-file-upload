@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -9,8 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'upload.views.home', name='home'),
 
-
-    url(r'^$', redirect(‘url-name’)),
+    url(r'^$', lambda x: HttpResponseRedirect('/upload/new/')),
     url(r'^upload/', include('fileupload.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
