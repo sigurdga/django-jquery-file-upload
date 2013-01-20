@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'upload.views.home', name='home'),
 
-    url(r'^$', redirect(‘url-name’)),    
+
+    url(r'^$', redirect(‘url-name’)),
     url(r'^upload/', include('fileupload.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
