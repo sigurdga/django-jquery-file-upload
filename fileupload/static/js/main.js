@@ -1,5 +1,5 @@
 /*
- * jQuery File Upload Plugin JS Example 7.0
+ * jQuery File Upload Plugin JS Example 6.7
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
@@ -16,11 +16,7 @@ $(function () {
     'use strict';
 
     // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload({
-        // Uncomment the following to send cross-domain cookies:
-        //xhrFields: {withCredentials: true},
-        url: 'server/php/'
-    });
+    $('#fileupload').fileupload();
 
     // Enable iframe cross-domain access via redirect option:
     $('#fileupload').fileupload(
@@ -68,15 +64,14 @@ $(function () {
         }
     } else {
         // Load existing files:
-        $.ajax({
-            // Uncomment the following to send cross-domain cookies:
-            //xhrFields: {withCredentials: true},
-            url: $('#fileupload').fileupload('option', 'url'),
-            dataType: 'json',
-            context: $('#fileupload')[0]
-        }).done(function (result) {
-            $(this).fileupload('option', 'done')
-                .call(this, null, {result: result});
+        $('#fileupload').each(function () {
+            var that = this;
+            $.getJSON(this.action, function (result) {
+                if (result && result.length) {
+                    $(that).fileupload('option', 'done')
+                        .call(that, null, {result: result});
+                }
+            });
         });
     }
 

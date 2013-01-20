@@ -1,5 +1,5 @@
 /*
- * jQuery Iframe Transport Plugin 1.6.1
+ * jQuery Iframe Transport Plugin 1.4
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2011, Sebastian Tschan
@@ -36,26 +36,12 @@
     //  equivalent to the return data of .serializeArray(), e.g.:
     //  [{name: 'a', value: 1}, {name: 'b', value: 2}]
     $.ajaxTransport('iframe', function (options) {
-        if (options.async) {
+        if (options.async && (options.type === 'POST' || options.type === 'GET')) {
             var form,
-                iframe,
-                addParamChar;
+                iframe;
             return {
                 send: function (_, completeCallback) {
                     form = $('<form style="display:none;"></form>');
-                    form.attr('accept-charset', options.formAcceptCharset);
-                    addParamChar = /\?/.test(options.url) ? '&' : '?';
-                    // XDomainRequest only supports GET and POST:
-                    if (options.type === 'DELETE') {
-                        options.url = options.url + addParamChar + '_method=DELETE';
-                        options.type = 'POST';
-                    } else if (options.type === 'PUT') {
-                        options.url = options.url + addParamChar + '_method=PUT';
-                        options.type = 'POST';
-                    } else if (options.type === 'PATCH') {
-                        options.url = options.url + addParamChar + '_method=PATCH';
-                        options.type = 'POST';
-                    }
                     // javascript:false as initial iframe src
                     // prevents warning popups on HTTPS in IE6.
                     // IE versions below IE8 cannot set the name property of
@@ -168,16 +154,16 @@
     $.ajaxSetup({
         converters: {
             'iframe text': function (iframe) {
-                return iframe && $(iframe[0].body).text();
+                return $(iframe[0].body).text();
             },
             'iframe json': function (iframe) {
-                return iframe && $.parseJSON($(iframe[0].body).text());
+                return $.parseJSON($(iframe[0].body).text());
             },
             'iframe html': function (iframe) {
-                return iframe && $(iframe[0].body).html();
+                return $(iframe[0].body).html();
             },
             'iframe script': function (iframe) {
-                return iframe && $.globalEval($(iframe[0].body).text());
+                return $.globalEval($(iframe[0].body).text());
             }
         }
     });
