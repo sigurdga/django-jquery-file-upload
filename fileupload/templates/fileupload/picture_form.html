@@ -42,6 +42,29 @@
         <table class="files"></table>
         <div class="fileupload-progressbar"></div>
     </div>
+
+    <div>
+        {% if pictures %}
+        <h2>Already uploaded</h2>
+        <table class="table table-striped">
+            {% for picture in pictures %}
+            <tr>
+                <td class="preview">
+                    <img src="{{ picture.file.url }}">
+                </td>
+                <td class="name">{{ picture.slug }}</td>
+                <td class="delete">
+                    <a class="btn btn-danger" href="{% url 'upload-delete' picture.id %}">
+                        <i class="icon-trash icon-white"></i>
+                        <span>Delete</span>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p>(Removing from this list is left as an exercise to the reader)</p>
+        {% endif %}
+    </div>
 </div>
 <!-- modal-gallery is the modal dialog used for the image gallery -->
 <div id="modal-gallery" class="modal modal-gallery hide fade" data-filter=":odd">
