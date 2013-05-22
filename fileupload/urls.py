@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns
 from fileupload.views import PictureCreateView, PictureDeleteView
 
 urlpatterns = patterns('',
