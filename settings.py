@@ -3,6 +3,8 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -12,7 +14,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'db',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(SITE_ROOT, 'db'), # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -117,7 +119,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'fileupload',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

@@ -22,6 +22,7 @@ class Picture(models.Model):
         self.slug = self.file.name
         super(Picture, self).save(*args, **kwargs)
 
+    # remove to leave file.
     def delete(self, *args, **kwargs):
         self.file.delete(False)
         super(Picture, self).delete(*args, **kwargs)
