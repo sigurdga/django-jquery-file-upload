@@ -1,18 +1,29 @@
 <html lang="en">
 <head>
+    <!-- Force latest IE rendering engine or ChromeFrame if installed -->
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
     <meta charset="utf-8">
     <title>Django Jquery file upload demo</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery. Supports cross-domain, chunked and resumable file uploads and client-side image resizing. Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS Toolkit styles -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+    -<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
     <!-- Generic page styles -->
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
     <!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
+    <!-- Bootstrap CSS fixes for IE6 -->
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-ie6.min.css">
+    <![endif]-->
+    <!-- blueimp Gallery styles -->
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blueimp-gallery.min.css">    
     <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-image-gallery.min.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <noscript><link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui-noscript.css"></noscript>
     <!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>

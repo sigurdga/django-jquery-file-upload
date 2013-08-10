@@ -5,16 +5,22 @@
 <div class="container">
     <div class="page-header">
         <h1>Django Jquery file upload demo</h1>
+        <h2 class="lead">Basic Plus UI version</h2>
+        <blockquote>
+            <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
+            Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
+            Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
+        </blockquote>
     </div>
     <form id="fileupload" method="post" action="." enctype="multipart/form-data">{% csrf_token %}
         <div class="row fileupload-buttonbar">
             <div class="span7">
-                <span class="btn btn-primary fileinput-button">
+                <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
                     <span>Add files...</span>
                     <input type="file" name="file" multiple>
                 </span>
-                <button type="submit" class="btn btn-success start">
+                <button type="submit" class="btn btn-primary start">
                     <i class="icon-upload icon-white"></i>
                     <span>Start upload</span>
                 </button>
@@ -24,65 +30,55 @@
                 </button>
                 <button type="button" class="btn btn-danger delete">
                     <i class="icon-trash icon-white"></i>
-                    <span>Delete files</span>
+                    <span>Delete</span>
                 </button>
                 <input type="checkbox" class="toggle">
+                <span class="fileupload-loading"></span>
             </div>
             <div class="span5 fileupload-progress fade">
-                <div class="progress progress-success progres-striped active">
-                    <div class="bar" style="width:0%"></div>
+                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="bar" style="width:0%;"></div>
                 </div>
                 <div class="progress-extended">&nbsp;</div>
             </div>
         </div>
-        <div class="fileupload-loading"></div>
-        <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+        <!-- The table listing the files available for upload/download -->
+        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
     </form>
-    <div class="fileupload-content">
-        <table class="files"></table>
-        <div class="fileupload-progressbar"></div>
-    </div>
 </div>
-<!-- modal-gallery is the modal dialog used for the image gallery -->
-<div id="modal-gallery" class="modal modal-gallery hide fade" data-filter=":odd">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h3 class="modal-title"></h3>
-    </div>
-    <div class="modal-body"><div class="modal-image"></div></div>
-    <div class="modal-footer">
-        <a class="btn modal-download" target="_blank">
-            <i class="icon-download"></i>
-            <span>Download</span>
-        </a>
-        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000">
-            <i class="icon-play icon-white"></i>
-            <span>Slideshow</span>
-        </a>
-        <a class="btn btn-info modal-prev">
-            <i class="icon-arrow-left icon-white"></i>
-            <span>Previous</span>
-        </a>
-        <a class="btn btn-primary modal-next">
-            <span>Next</span>
-            <i class="icon-arrow-right icon-white"></i>
-        </a>
-    </div>
+<!-- The blueimp Gallery widget -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
 </div>
 {% upload_js %}
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.ui.widget.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="{{ STATIC_URL }}js/vendor/jquery.ui.widget.js"></script>
 <script src="{{ STATIC_URL }}js/tmpl.min.js"></script>
 <script src="{{ STATIC_URL }}js/load-image.min.js"></script>
 <script src="{{ STATIC_URL }}js/canvas-to-blob.min.js"></script>
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-<script src="{{ STATIC_URL }}js/bootstrap-image-gallery.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.blueimp-gallery.min.js"></script>
 <script src="{{ STATIC_URL }}js/jquery.iframe-transport.js"></script>
 <script src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.fileupload-fp.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.fileupload-process.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.fileupload-image.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.fileupload-audio.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.fileupload-video.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.fileupload-validate.js"></script>
 <script src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
 <script src="{{ STATIC_URL }}js/locale.js"></script>
 <script src="{{ STATIC_URL }}js/main.js"></script>
 <script src="{{ STATIC_URL }}js/csrf.js"></script>
+<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
+<!--[if gte IE 8]>
+<script src="{{ STATIC_URL }}js/cors/jquery.xdr-transport.js"></script>
+<![endif]-->
 {% endblock %}
