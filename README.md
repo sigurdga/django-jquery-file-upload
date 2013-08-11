@@ -7,7 +7,7 @@ This is a small example on how to setup Sebastian Tschan's jQuery File Upload in
 
 Here, you'll find a minimal Django project with a minimal app. You can run the example standalone by cloning the repository, running the migrations and starting the server.
 
-I want to give a thank to Sebastian Tschan, the original author, and Jørgen Bergquist for helping me over the first hurdles.
+I want to give a thank to [Sebastian Tschan](https://github.com/blueimp), the original author, [Etay Cohen-Solal](https://github.com/et-cs), for the latest major update, and [Jørgen Bergquist](https://github.com/bergquis) for helping me over the first hurdles.
 
 Features
 ========
