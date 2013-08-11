@@ -41,6 +41,11 @@ class PictureCreateView(CreateView):
         response['Content-Disposition'] = 'inline; filename=files.json'
         return response
 
+    def get_context_data(self, **kwargs):
+        context = super(PictureCreateView, self).get_context_data(**kwargs)
+        context['pictures'] = Picture.objects.all()
+        return context
+
 
 class PictureDeleteView(DeleteView):
     model = Picture
