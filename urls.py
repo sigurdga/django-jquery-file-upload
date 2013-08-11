@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 from django.http import HttpResponseRedirect
 
 # Uncomment the next two lines to enable the admin:
