@@ -1,10 +1,10 @@
+db
 /media
-/db
 /bin
 /include
 /lib
 /local
 /share
+/env
 /venv
-db
 *.pyc
