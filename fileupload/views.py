@@ -43,7 +43,10 @@ class PictureCreateView(CreateView):
 
 class BasicVersionCreateView(PictureCreateView):
     template_name_suffix = '_basic_form'
-    
+
+class BasicPlusVersionCreateView(PictureCreateView):
+    template_name_suffix = '_basicplus_form'
+
 class PictureDeleteView(DeleteView):
     model = Picture
 
