@@ -41,7 +41,10 @@ class PictureCreateView(CreateView):
         response['Content-Disposition'] = 'inline; filename=files.json'
         return response
 
-
+class BasicVersionCreateView(PictureCreateView):
+    model = Picture
+    template_name_suffix = '_basic_form'
+    
 class PictureDeleteView(DeleteView):
     model = Picture
 
