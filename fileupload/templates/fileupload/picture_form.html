@@ -3,48 +3,77 @@
 
 {% block content %}
 <div class="container">
-    <div class="page-header">
-        <h1>Django Jquery file upload demo</h1>
-        <h2 class="lead">Basic Plus UI version</h2>
-        <blockquote>
-            <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
-            Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
-            Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
-        </blockquote>
-    </div>
+    <h1>jQuery File Upload Demo</h1>
+    <h2 class="lead">Basic Plus UI version</h2>
+    <ul class="nav nav-tabs">
+        <li><a href="basic.html" style="display:none;">Basic</a></li>
+        <li><a href="basic-plus.html" style="display:none;">Basic Plus</a></li>
+        <li class="active"><a href="/upload/new/">Basic Plus UI</a></li>
+        <li><a href="angularjs.html" style="display:none;">AngularJS</a></li>
+        <li><a href="jquery-ui.html" style="display:none;">jQuery UI</a></li>
+    </ul>
+    <br>
+    <blockquote>
+        <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
+        Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
+        Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
+    </blockquote>
+    <br>
+    <!-- The file upload form used as target for the file upload widget -->
     <form id="fileupload" method="post" action="." enctype="multipart/form-data">{% csrf_token %}
+        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+        <!--<noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>-->
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="row fileupload-buttonbar">
-            <div class="span7">
+            <div class="col-lg-7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
+                    <i class="glyphicon glyphicon-plus"></i>
                     <span>Add files...</span>
                     <input type="file" name="file" multiple>
                 </span>
                 <button type="submit" class="btn btn-primary start">
-                    <i class="icon-upload icon-white"></i>
+                    <i class="glyphicon glyphicon-upload"></i>
                     <span>Start upload</span>
                 </button>
                 <button type="reset" class="btn btn-warning cancel">
-                    <i class="icon-ban-circle icon-white"></i>
+                    <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Cancel upload</span>
                 </button>
                 <button type="button" class="btn btn-danger delete">
-                    <i class="icon-trash icon-white"></i>
+                    <i class="glyphicon glyphicon-trash"></i>
                     <span>Delete</span>
                 </button>
                 <input type="checkbox" class="toggle">
+                <!-- The loading indicator is shown during file processing -->
                 <span class="fileupload-loading"></span>
             </div>
-            <div class="span5 fileupload-progress fade">
-                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                    <div class="bar" style="width:0%;"></div>
+            <!-- The global progress information -->
+            <div class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
                 </div>
+                <!-- The extended global progress information -->
                 <div class="progress-extended">&nbsp;</div>
             </div>
         </div>
         <!-- The table listing the files available for upload/download -->
         <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
     </form>
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Demo Notes</h3>
+        </div>
+        <div class="panel-body">
+            <ul>
+                <li>You can <strong>drag &amp; drop</strong> files from your desktop on this webpage (see <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/Browser-support">Browser support</a>).</li>
+                <li>Please refer to the <a href="https://github.com/blueimp/jQuery-File-Upload">project website</a> and <a href="https://github.com/blueimp/jQuery-File-Upload/wiki">documentation</a> for more information.</li>
+                <li>Built with Twitter's <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> CSS framework and Icons from <a href="http://glyphicons.com/">Glyphicons</a>.</li>
+            </ul>
+        </div>
+    </div>
 </div>
 <!-- The blueimp Gallery widget -->
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
@@ -58,24 +87,38 @@
 </div>
 {% upload_js %}
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="{{ STATIC_URL }}js/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
 <script src="{{ STATIC_URL }}js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
 <script src="{{ STATIC_URL }}js/load-image.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
 <script src="{{ STATIC_URL }}js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+<!-- blueimp Gallery script -->
 <script src="{{ STATIC_URL }}js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="{{ STATIC_URL }}js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
 <script src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
 <script src="{{ STATIC_URL }}js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
 <script src="{{ STATIC_URL }}js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
 <script src="{{ STATIC_URL }}js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
 <script src="{{ STATIC_URL }}js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
 <script src="{{ STATIC_URL }}js/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
 <script src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
-<script src="{{ STATIC_URL }}js/locale.js"></script>
+<!-- The main application script -->
 <script src="{{ STATIC_URL }}js/main.js"></script>
+<script src="{{ STATIC_URL }}js/locale.js"></script>
 <script src="{{ STATIC_URL }}js/csrf.js"></script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
 <!--[if gte IE 8]>

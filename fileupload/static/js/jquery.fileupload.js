@@ -1,5 +1,5 @@
 /*
- * jQuery File Upload Plugin 5.32.1
+ * jQuery File Upload Plugin 5.32.2
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
@@ -502,7 +502,7 @@
                 paramName = [];
                 fileInput.each(function () {
                     var input = $(this),
-                        name = input.prop('name') || 'files',
+                        name = input.prop('name') || 'file',
                         i = (input.prop('files') || [1]).length;
                     while (i) {
                         paramName.push(name);
@@ -510,7 +510,7 @@
                     }
                 });
                 if (!paramName.length) {
-                    paramName = [fileInput.prop('name') || 'files'];
+                    paramName = [fileInput.prop('name') || 'file'];
                 }
             } else if (!$.isArray(paramName)) {
                 paramName = [paramName];
@@ -1301,6 +1301,10 @@
                     this._getFileInputFiles(data.fileInput).always(
                         function (files) {
                             if (aborted) {
+                                return;
+                            }
+                            if (!files.length) {
+                                dfd.reject();
                                 return;
                             }
                             data.files = files;
