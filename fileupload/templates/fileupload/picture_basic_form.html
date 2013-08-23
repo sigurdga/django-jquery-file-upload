@@ -51,7 +51,6 @@
         Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
     </blockquote>
     <br>
-    {% csrf_token %}
     <!-- The fileinput-button span is used to style the file input field as button -->
     <span class="btn btn-success fileinput-button">
         <i class="glyphicon glyphicon-plus"></i>
@@ -90,7 +89,6 @@
 <script src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
 <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="{{ STATIC_URL }}js/csrf.js"></script>
 <script src="{{ STATIC_URL }}js/jquery.cookie.js"></script>
 <script>
 /*jslint unparam: true */

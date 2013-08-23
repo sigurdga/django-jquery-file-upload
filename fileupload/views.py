@@ -42,7 +42,7 @@ class PictureCreateView(CreateView):
         return response
 
 class BasicVersionCreateView(PictureCreateView):
-    model = Picture
+#    model = Picture
     template_name_suffix = '_basic_form'
     
 class PictureDeleteView(DeleteView):
