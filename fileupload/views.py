@@ -47,6 +47,12 @@ class BasicVersionCreateView(PictureCreateView):
 class BasicPlusVersionCreateView(PictureCreateView):
     template_name_suffix = '_basicplus_form'
 
+class AngularVersionCreateView(PictureCreateView):
+    template_name_suffix = '_angular_form'
+
+class jQueryVersionCreateView(PictureCreateView):
+    template_name_suffix = '_jquery_form'
+
 class PictureDeleteView(DeleteView):
     model = Picture
 
