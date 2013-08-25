@@ -21,19 +21,19 @@ def upload_js():
         <td>
             <p class="size">{%=o.formatFileSize(file.size)%}</p>
             {% if (!o.files.error) { %}
-                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
             {% } %}
         </td>
         <td>
             {% if (!o.files.error && !i && !o.options.autoUpload) { %}
                 <button class="btn btn-primary start">
-                    <i class="icon-upload icon-white"></i>
+                    <i class="glyphicon glyphicon-upload"></i>
                     <span>{%=locale.fileupload.start%}</span>
                 </button>
             {% } %}
             {% if (!i) { %}
                 <button class="btn btn-warning cancel">
-                    <i class="icon-ban-circle icon-white"></i>
+                    <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>{%=locale.fileupload.cancel%}</span>
                 </button>
             {% } %}
@@ -65,7 +65,7 @@ def upload_js():
         </td>
         <td>
             <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                <i class="icon-trash icon-white"></i>
+                <i class="glyphicon glyphicon-trash"></i>
                 <span>{%=locale.fileupload.destroy%}</span>
             </button>
             <input type="checkbox" name="delete" value="1" class="toggle">
@@ -74,4 +74,9 @@ def upload_js():
 {% } %}
 </script>
 """
+
+
+
+
+
 

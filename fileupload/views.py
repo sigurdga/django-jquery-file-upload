@@ -41,23 +41,27 @@ class PictureCreateView(CreateView):
         response['Content-Disposition'] = 'inline; filename=files.json'
         return response
 
+class BasicVersionCreateView(PictureCreateView):
+    template_name_suffix = '_basic_form'
+
+class BasicPlusVersionCreateView(PictureCreateView):
+    template_name_suffix = '_basicplus_form'
+
+class AngularVersionCreateView(PictureCreateView):
+    template_name_suffix = '_angular_form'
+
+class jQueryVersionCreateView(PictureCreateView):
+    template_name_suffix = '_jquery_form'
 
 class PictureDeleteView(DeleteView):
     model = Picture
 
     def delete(self, request, *args, **kwargs):
-        """
-        This does not actually delete the file, only the database record.  But
-        that is easy to implement.
-        """
         self.object = self.get_object()
         self.object.delete()
-        if request.is_ajax():
-            response = JSONResponse(True, {}, response_mimetype(self.request))
-            response['Content-Disposition'] = 'inline; filename=files.json'
-            return response
-        else:
-            return HttpResponseRedirect('/upload/new')
+        response = JSONResponse(True, {}, response_mimetype(self.request))
+        response['Content-Disposition'] = 'inline; filename=files.json'
+        return response
 
 def PictureListView(request):
     files = []
