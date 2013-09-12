@@ -7,4 +7,7 @@ db
 /share
 /env
 /venv
+*.log
+*.pot
 *.pyc
+local_settings.py
