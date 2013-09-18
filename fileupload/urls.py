@@ -1,15 +1,42 @@
 from django.conf.urls import patterns, url
-from fileupload.views import BasicVersionCreateView, BasicPlusVersionCreateView, PictureCreateView, AngularVersionCreateView, jQueryVersionCreateView, PictureDeleteView
+from .views import (BasicVersionCreateView, BasicPlusVersionCreateView,
+    PictureCreateView, AngularVersionCreateView, jQueryVersionCreateView,
+    PictureDeleteView, PictureListView)
 
 urlpatterns = patterns('',
-    (r'^basic/$', BasicVersionCreateView.as_view(), {}, 'upload-basic'),
-    (r'^basic/plus/$', BasicPlusVersionCreateView.as_view(), {}, 'upload-basic-plus'),
-    (r'^new/$', PictureCreateView.as_view(), {}, 'upload-new'),
-    (r'^angular/$', AngularVersionCreateView.as_view(), {}, 'upload-angular'),
-    (r'^jquery-ui/$', jQueryVersionCreateView.as_view(), {}, 'upload-jquery'),
-    (r'^delete/(?P<pk>\d+)$', PictureDeleteView.as_view(), {}, 'upload-delete'),
-    url(r'^view/$', 'fileupload.views.PictureListView', name='upload-view'),
+    url(
+        r'^basic/$',
+        BasicVersionCreateView.as_view(),
+        name='upload-basic'
+    ),
+    url(
+        r'^basic/plus/$',
+        BasicPlusVersionCreateView.as_view(),
+        name='upload-basic-plus'
+    ),
+    url(
+        r'^new/$',
+        PictureCreateView.as_view(),
+        name='upload-new'
+    ),
+    url(
+        r'^angular/$',
+        AngularVersionCreateView.as_view(),
+        name='upload-angular'
+    ),
+    url(
+        r'^jquery-ui/$',
+        jQueryVersionCreateView.as_view(),
+        name='upload-jquery'
+    ),
+    url(
+        r'^delete/(?P<pk>\d+)$',
+        PictureDeleteView.as_view(),
+        name='upload-delete'
+    ),
+    url(
+        r'^view/$',
+        PictureListView.as_view(),
+        name='upload-view'
+    ),
 )
-
-
-
