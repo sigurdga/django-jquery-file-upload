@@ -11,7 +11,7 @@ def order_name(name):
     name -- text to be limited.
 
     """
-    name = re.sub (r'^.*/', '', name)
+    name = re.sub(r'^.*/', '', name)
     if len(name)>20:
         return name[:10] + "..." + name[-7:]
     else:
