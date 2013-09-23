@@ -20,7 +20,18 @@ def response_mimetype(request):
 
 
 class JSONResponse(HttpResponse):
-    """JSON response class."""
+    """JSONResponse -- Extends HTTPResponse to handle JSON format response.
+
+    This response can be used in any view that should return a json stream of
+    data.
+
+    Usage:
+
+        def a_iew(request):
+            content = {'key': 'value'}
+            return JSONResponse(content, mimetype=response_mimetype(request))
+
+    """
     def __init__(self, obj='', json_opts=None, mimetype=MIMEJSON, *args, **kwargs):
         json_opts = json_opts if isinstance(json_opts, dict) else {}
         content = simplejson.dumps(obj, **json_opts)
