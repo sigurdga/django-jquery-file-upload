@@ -1,3 +1,4 @@
+# encoding: utf-8
 from django.conf.urls import patterns, url
 from fileupload.views import BasicVersionCreateView, BasicPlusVersionCreateView, PictureCreateView, AngularVersionCreateView, jQueryVersionCreateView, PictureDeleteView
 
