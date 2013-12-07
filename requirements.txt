@@ -1,2 +1,2 @@
-django
+django==1.5
 pillow
