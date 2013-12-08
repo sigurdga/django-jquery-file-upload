@@ -1,5 +1,6 @@
 db
 /media
+/django-jquery-file-upload/media
 /bin
 /include
 /lib
