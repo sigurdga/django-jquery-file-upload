@@ -25,12 +25,18 @@ def serialize(instance, file_attr='file'):
 
     """
     obj = getattr(instance, file_attr)
+
+    try:
+        size = obj.size
+    except OSError:
+        size = 0
+
     return {
         'url': obj.url,
         'name': order_name(obj.name),
         'type': mimetypes.guess_type(obj.path)[0] or 'image/png',
         'thumbnailUrl': obj.url,
-        'size': obj.size,
+        'size': size,
         'deleteUrl': reverse('upload-delete', args=[instance.pk]),
         'deleteType': 'DELETE',
     }
