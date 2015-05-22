@@ -1,2 +1,2 @@
-django<1.6
+django
 pillow
