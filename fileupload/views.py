@@ -10,6 +10,7 @@ from .serialize import serialize
 
 class PictureCreateView(CreateView):
     model = Picture
+    fields = "__all__"
 
     def form_valid(self, form):
         self.object = form.save()

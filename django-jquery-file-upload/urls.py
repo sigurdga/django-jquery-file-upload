@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 )
 
-import os
+from os.path import join, abspath, dirname
 urlpatterns += patterns('',
-    (r'^media/(.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.abspath(os.path.dirname(__file__)), 'media')}),
+    (r'^media/(.*)$', 'django.views.static.serve', {'document_root': join(abspath(dirname(dirname(__file__))), 'media')}),
 )

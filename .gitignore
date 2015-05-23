@@ -7,8 +7,9 @@ db
 /share
 /env
 /venv
-/django-jquery-file-upload
+
 *.log
 *.pot
 *.pyc
 local_settings.py
+.idea
