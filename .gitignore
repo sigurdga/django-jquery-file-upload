@@ -7,7 +7,7 @@ db
 /share
 /env
 /venv
-
+/django-jquery-file-upload/media
 *.log
 *.pot
 *.pyc

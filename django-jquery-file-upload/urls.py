@@ -21,5 +21,5 @@ urlpatterns = patterns('',
 
 from os.path import join, abspath, dirname
 urlpatterns += patterns('',
-    (r'^media/(.*)$', 'django.views.static.serve', {'document_root': join(abspath(dirname(dirname(__file__))), 'media')}),
+    (r'^media/(.*)$', 'django.views.static.serve', {'document_root': join(abspath(dirname(__file__)), 'media')}),
 )
