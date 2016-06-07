@@ -1,10 +1,11 @@
 from django import template
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
 @register.simple_tag
 def upload_js():
-    return """
+    return mark_safe("""
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -73,7 +74,7 @@ def upload_js():
     </tr>
 {% } %}
 </script>
-"""
+""")
 
 
 
