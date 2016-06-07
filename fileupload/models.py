@@ -12,7 +12,7 @@ class Picture(models.Model):
     file = models.ImageField(upload_to="pictures")
     slug = models.SlugField(max_length=50, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.file.name
 
     @models.permalink
