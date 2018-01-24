@@ -1,2 +1,2 @@
-django
-pillow
+django==1.9
+pillow==5.0.0
