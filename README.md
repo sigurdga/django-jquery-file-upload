@@ -32,10 +32,17 @@ fileupload/models.py as commented in the file.
 Installation
 ============
 
-* pip install -r requirements.txt (will install django and pillow)
-* python manage.py migrate
-* python manage.py runserver
-* go to localhost:8000/upload/new/ and upload some files
+I recommend to install this within a virtualenv.
+
+```sh
+virtualenv -p python3 venv
+source venv/bin/activate
+pip install -r requirements.txt
+./manage.py migrate
+./manage.py runserver
+```
+
+And then go to localhost:8000 and try to upload some files.
 
 License
 =======
