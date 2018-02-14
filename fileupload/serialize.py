@@ -1,7 +1,7 @@
 # encoding: utf-8
 import mimetypes
 import re
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 def order_name(name):
